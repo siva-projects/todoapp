@@ -2,10 +2,11 @@ import express from "express";
 import Connection from './database/db.js ';
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-
+import dotenv from 'dotenv';
 
 // const _ = require('lodash');
 const app = express();
+const PORT = process.env.PORT || 5000;
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const noteSchema = {
@@ -55,6 +56,6 @@ app.post('/delete', (req, res) => {
 })
 
 Connection();
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log('server connected at 5000');
 })
