@@ -35,7 +35,7 @@ app.get('/', (req, res) => { res.redirect('/api') });
 
 
 app.get('/api', (req, res) => {
-    // res.send('hello from server');
+    console.log('hello from server');
     Note.find({}, (err, fitems) => {
         if (err)
             console.log(err);
