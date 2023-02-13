@@ -31,7 +31,6 @@ const Note = mongoose.model('note', noteSchema);
 
 
 
-app.get('/', (req, res) => { res.redirect('/api') });
 
 
 app.get('/api', (req, res) => {
@@ -51,7 +50,7 @@ app.post('/api', (req, res) => {
         content: tempContent
     })
     note.save();
-    res.redirect('/');
+    res.redirect('/api');
 })
 
 
