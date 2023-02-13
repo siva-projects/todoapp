@@ -69,7 +69,7 @@ app.post('/delete', (req, res) => {
         else
             console.log('note deleted ');
     })
-    res.redirect('/api');
+    res.redirect('/');
 
 })
 
