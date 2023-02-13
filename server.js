@@ -1,20 +1,35 @@
 import express from "express";
-import Connection from './database/db.js ';
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
+dotenv.config();
+const u = process.env.DB_USER;
+const p = process.env.DB_PASSWORD;
+const d = process.env.DB;
 
 // const _ = require('lodash');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const MONGODB_URL = `mongodb+srv://todomongo:${p}@mern-todo.xjfnt2c.mongodb.net/todoDB?retryWrites=true&w=majority`
+
+mongoose.connect(MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => console.log('connnction success'))
+    .catch((err) => console.log(' ERROR FOUND : ') + err);
+
 const noteSchema = {
     title: String,
     content: String
-};
+}
 
 const Note = mongoose.model('note', noteSchema);
+
+
 
 app.get('/', (req, res) => { res.redirect('/api') });
 
@@ -55,7 +70,6 @@ app.post('/delete', (req, res) => {
 
 })
 
-Connection();
 app.listen(PORT, () => {
     console.log('server connected at 5000');
 })
