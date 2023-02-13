@@ -30,6 +30,18 @@ const noteSchema = {
 const Note = mongoose.model('note', noteSchema);
 
 
+app.get('/', (req, res) => {
+    // res.send('hello from server');
+    Note.find({}, (err, fitems) => {
+        if (err)
+            console.log(err);
+        else {
+            console.log(fitems);
+            res.json(fitems);
+        }
+    })
+});
+
 
 
 
