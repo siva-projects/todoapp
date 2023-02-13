@@ -33,24 +33,28 @@ const Note = mongoose.model('note', noteSchema);
 
 
 
+
 app.get('/api', (req, res) => {
-    console.log('hello from server');
+    // res.send('hello from server');
     Note.find({}, (err, fitems) => {
         if (err)
             console.log(err);
-        else
+        else {
+            console.log(fitems);
             res.json(fitems);
+        }
     })
 });
 app.post('/api', (req, res) => {
     const tempTitle = req.body.title;
     const tempContent = req.body.content;
+    console.log('called')
     const note = new Note({
         title: tempTitle,
         content: tempContent
     })
     note.save();
-    res.redirect('/api');
+    res.redirect('/');
 })
 
 
