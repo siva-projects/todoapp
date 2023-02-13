@@ -33,7 +33,6 @@ const Note = mongoose.model('note', noteSchema);
 
 
 
-
 app.get('/api', (req, res) => {
     // res.send('hello from server');
     Note.find({}, (err, fitems) => {
